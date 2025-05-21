@@ -39,5 +39,11 @@ frontend/.next/
 frontend/.cache/
 frontend/.turbo/
 
+###################
+# Python
+###################
+/ai-service/__pycache__
+
 # Optional: VSCode settings
 .vscode/
+
