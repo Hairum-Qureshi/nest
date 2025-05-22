@@ -5,6 +5,7 @@ export default interface IDiary {
 	title: string;
 	diaryPassword: number;
 	isPassProtected: boolean;
+	favorite: boolean;
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -15,6 +16,7 @@ export default interface IUser {
 	email: string;
 	password: string;
 	diaries: IDiary[];
+	favoriteDiaries: IDiary[]
 	createdAt: Date;
 	updatedAt: Date;
 }
