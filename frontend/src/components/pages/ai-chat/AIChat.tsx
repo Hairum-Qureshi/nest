@@ -1,4 +1,4 @@
-import background from "../../assets/background.png";
+import background from "../../../assets/background.png";
 
 export default function AIChat() {
 	return (
