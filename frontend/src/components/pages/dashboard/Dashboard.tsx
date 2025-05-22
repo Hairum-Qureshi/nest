@@ -1,4 +1,4 @@
-import background from "../../assets/background.png";
+import background from "../../../assets/background.png";
 import Diary from "./Diary";
 
 export default function Landing() {
@@ -7,21 +7,6 @@ export default function Landing() {
 			style={{ backgroundImage: `url(${background})` }}
 			className="bg-cover bg-no-repeat w-full min-h-screen relative"
 		>
-			{/* Sidebar */}
-			{/* <div className="w-1/6 bg-[#09100d] p-4 absolute left-0 min-h-screen h-full shadow-md shadow-emerald-900 flex">
-				<div className="items-center">
-					<div>
-						<h1 className="text-sky-400 text-2xl font-semibold drop-shadow-[0_0_5px_#0b2630] w-full">
-							Nest
-						</h1>
-					</div>
-					<div className="w-full h-auto text-white items-center">
-						<h3>AI</h3>
-						<h3>Favorite Entries</h3>
-					</div>
-				</div>
-			</div> */}
-
 			{/* Search Bar */}
 			<div className="w-full p-3 flex">
 				<div className="mt-3 flex w-full gap-2 items-center">
