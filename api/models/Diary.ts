@@ -25,6 +25,10 @@ export const diarySchema = new Schema<IDiary>(
 		isPassProtected: {
 			type: Boolean,
 			default: false
+		},
+		favorite: {
+			type: Boolean,
+			default: false
 		}
 	},
 	{

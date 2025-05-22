@@ -3,6 +3,9 @@ import IUser from "../interfaces";
 
 const userSchema = new Schema(
 	{
+		_id: {
+			type: String
+		},
 		fullName: {
 			type: String,
 			required: true
@@ -17,6 +20,12 @@ const userSchema = new Schema(
 			required: true
 		},
 		diaries: [
+			{
+				type: String,
+				ref: "Diary"
+			}
+		],
+		favoriteDiaries: [
 			{
 				type: String,
 				ref: "Diary"
