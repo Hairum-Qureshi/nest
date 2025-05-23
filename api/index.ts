@@ -6,6 +6,7 @@ import colors from "colors";
 import authentication from "./routes/authentication";
 import mongoose from "mongoose";
 import user from "./routes/user";
+import chat from "./routes/chat";
 
 dotenv.config();
 colors.enable();
@@ -24,6 +25,7 @@ app.use(express.json()); // <-- without this, req.body won't work (for JSON data
 app.use(express.urlencoded({ extended: true })); // <-- without this, you won't be able to read form data
 app.use("/api/auth", authentication);
 app.use("/api/user", user);
+app.subscribe("/api/chat", chat);
 
 const PORT: number = +process.env.PORT! || 4000; // <-- if your port # is different, change it
 
