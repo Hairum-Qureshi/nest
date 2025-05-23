@@ -4,9 +4,17 @@ import NotFound from "./pages/NotFound";
 import MainAuthentication from "./pages/authentication/MainAuthentication";
 import Dashboard from "./pages/dashboard/Dashboard";
 import ProtectedRoutesGuard from "./ProtectedRoutesGuard";
-import AIChat from "./pages/AIChat";
+import AIChat from "./pages/ai-chat/AIChat";
+import useStore from "../hooks/zustand/authStore";
+import { useEffect } from "react";
 
 export default function App() {
+	const getCurrentUserData = useStore(state => state.getCurrentUserData);
+
+	useEffect(() => {
+		getCurrentUserData();
+	}, []);
+
 	return (
 		<BrowserRouter>
 			<Routes>
