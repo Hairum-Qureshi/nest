@@ -16,7 +16,25 @@ export default interface IUser {
 	email: string;
 	password: string;
 	diaries: IDiary[];
-	favoriteDiaries: IDiary[]
+	favoriteDiaries: IDiary[];
 	createdAt: Date;
 	updatedAt: Date;
+}
+
+enum Role {
+	USER,
+	SYSTEM
+}
+
+export default interface IMessage {
+	_id: string;
+	userID: string;
+	role: Role;
+	content: string;
+	relatableDiaries: [
+		{
+			diaryID: string;
+			summary: string;
+		}
+	];
 }
