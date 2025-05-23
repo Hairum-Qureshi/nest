@@ -9,7 +9,7 @@ export default async function verifyAuthStatus(
 	next: NextFunction
 ) {
 	try {
-		const token = req.cookies["auth-session"];
+		const token = req.cookies["auth-token"];
 
 		if (!token) {
 			res.status(401).json({ message: "Unauthorized" });
