@@ -26,15 +26,15 @@ enum Role {
 	SYSTEM
 }
 
+export interface DiaryContent {
+	diaryID: string;
+	summary: string;
+}
+
 export default interface IMessage {
 	_id: string;
 	userID: string;
 	role: Role;
 	content: string;
-	relatableDiaries: [
-		{
-			diaryID: string;
-			summary: string;
-		}
-	];
+	relatedDiaries: DiaryContent[]
 }
