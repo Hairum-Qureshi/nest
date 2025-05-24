@@ -22,8 +22,8 @@ export default interface IUser {
 }
 
 enum Role {
-	USER,
-	SYSTEM
+	USER = "USER",
+	SYSTEM = "SYSTEM"
 }
 
 export interface DiaryContent {
@@ -36,5 +36,5 @@ export default interface IMessage {
 	userID: string;
 	role: Role;
 	content: string;
-	relatedDiaries: DiaryContent[]
+	relatedDiaries: DiaryContent[];
 }
