@@ -20,3 +20,21 @@ export interface UserData {
 	createdAt: Date;
 	updatedAt: Date;
 }
+
+export enum Role {
+	USER = "USER",
+	SYSTEM = "SYSTEM"
+}
+
+interface DiaryContent {
+	diaryID: string;
+	summary: string;
+}
+
+export default interface Message {
+	_id: string;
+	userID: string;
+	role: Role;
+	content: string;
+	relatedDiaries: DiaryContent[];
+}
