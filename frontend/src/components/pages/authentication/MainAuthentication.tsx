@@ -1,6 +1,9 @@
+import { useLocation } from "react-router-dom";
 import SignUp from "./SignUp";
+import SignIn from "./SignIn";
 
 export default function MainAuthentication() {
+	const location = useLocation();
 	return (
 		<div className="lg:flex w-full h-screen bg-green-950">
 			<div className="relative lg:w-3/5 w-full lg:h-full h-1/2 overflow-hidden flex items-center justify-center">
@@ -26,7 +29,7 @@ export default function MainAuthentication() {
 					}}
 				></div>
 				<div className="relative z-10">
-					<SignUp />
+					{location.pathname.includes("/sign-up") ? <SignUp /> : <SignIn />}
 				</div>
 			</div>
 		</div>
