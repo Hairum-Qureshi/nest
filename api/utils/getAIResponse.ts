@@ -1,13 +1,28 @@
 import axios from "axios";
 import { DiaryContent } from "../interfaces";
+import Message from "../models/Message";
 // import { Response } from "express";
+
+// TODO - cater the AI so it uses the user's name
 
 export default async function getAIResponse(
 	messageContent: string,
-	diaries: DiaryContent[]
+	diaries: DiaryContent[],
+	userID: string
 ): Promise<string | undefined> {
 	// TODO - update the logic with sharing the diary entries with the AI
 	try {
+
+		// The following code is used to reference the previous messages so it imitates a sense of giving the AI a "memory"
+		const pastMessages = await Message.find({ userID })
+			.sort({ timestamp: -1 })
+			.limit(6)
+			.lean();
+		const formatted = pastMessages.reverse().map(msg => ({
+			role: msg.role === "USER" ? "user" : "assistant",
+			content: msg.content
+		}));
+
 		const response = await axios.post(
 			"https://openrouter.ai/api/v1/chat/completions",
 			{
@@ -18,6 +33,7 @@ export default async function getAIResponse(
 						content:
 							"You are Remi, an AI assistant that helps users reflect on their past diary entries. Respond warmly and politely to greetings like “hello”, “hi”, or “how are you?” — let the user know you're ready to help and invite them to ask a question based on their diary entries. You may give short, friendly examples of questions like: - “What have I written about that made me feel proud?” - “Which moments have I written about the most?” - “What's a memory I keep coming back to?” If the user hasn't written any diary entries yet, let them know gently that you can't assist until they've started writing. Do not invite the user to freely vent, chat, or share new emotions. You are not a therapist or open-ended chatbot. You only respond to questions that relate to the diary entries they've already written. Avoid commentary, meta notes, or parentheses in your replies."
 					},
+					...formatted,
 					{
 						role: "user",
 						content: `
