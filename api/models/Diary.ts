@@ -1,13 +1,8 @@
 import { Schema, model } from "mongoose";
-import IDiary from "../interfaces";
+import { IDiary } from "../interfaces";
 
 export const diarySchema = new Schema<IDiary>(
 	{
-		_id: {
-			type: String,
-			required: true,
-			unique: true
-		},
 		authorUID: {
 			type: String,
 			ref: "User"
@@ -19,9 +14,6 @@ export const diarySchema = new Schema<IDiary>(
 		title: {
 			type: String
 		},
-		diaryPassword: {
-			type: Number
-		},
 		isPassProtected: {
 			type: Boolean,
 			default: false
@@ -29,6 +21,11 @@ export const diarySchema = new Schema<IDiary>(
 		favorite: {
 			type: Boolean,
 			default: false
+		},
+		monthID: {
+			type: String,
+			ref: "MonthCollection",
+			required: true
 		}
 	},
 	{
