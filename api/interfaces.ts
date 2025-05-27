@@ -18,6 +18,7 @@ export interface IUser {
 	password: string;
 	diaries: IDiary[];
 	favoriteDiaries: IDiary[];
+	diaryPin: number;
 	createdAt: Date;
 	updatedAt: Date;
 }
