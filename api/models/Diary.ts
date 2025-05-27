@@ -26,6 +26,9 @@ export const diarySchema = new Schema<IDiary>(
 			type: String,
 			ref: "MonthCollection",
 			required: true
+		},
+		date: {
+			type: String
 		}
 	},
 	{
