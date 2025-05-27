@@ -3,6 +3,9 @@ import { IDiary } from "../interfaces";
 
 export const diarySchema = new Schema<IDiary>(
 	{
+		_id: {
+			type: String
+		},
 		authorUID: {
 			type: String,
 			ref: "User"
