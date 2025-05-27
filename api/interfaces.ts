@@ -16,7 +16,7 @@ export interface IUser {
 	fullName: string;
 	email: string;
 	password: string;
-	diaries: IDiary[];
+	diaryIDs: IDiary[];
 	favoriteDiaries: IDiary[];
 	diaryPin: number;
 	createdAt: Date;
@@ -49,7 +49,7 @@ interface BaseCollection {
 }
 
 export interface IYearCollection extends BaseCollection {
-	year: number; // e.g., 2025
+	year: number; 
 }
 
 export interface IMonthCollection extends BaseCollection {
