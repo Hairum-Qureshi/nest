@@ -19,7 +19,7 @@ const userSchema = new Schema(
 			type: String,
 			required: true
 		},
-		diaries: [
+		diaryIDs: [
 			{
 				type: String,
 				ref: "Diary"
