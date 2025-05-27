@@ -25,7 +25,7 @@ export const monthCollectionSchema = new Schema<IMonthCollection>(
 	}
 );
 
-export const YearCollection = model<IMonthCollection>(
+export const MonthCollection = model<IMonthCollection>(
 	"MonthCollection",
 	monthCollectionSchema
 );
