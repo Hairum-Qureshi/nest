@@ -7,6 +7,7 @@ import authentication from "./routes/authentication";
 import mongoose from "mongoose";
 import user from "./routes/user";
 import chat from "./routes/chat";
+import diary from "./routes/diary";
 
 dotenv.config();
 colors.enable();
@@ -26,6 +27,7 @@ app.use(express.urlencoded({ extended: true })); // <-- without this, you won't 
 app.use("/api/auth", authentication);
 app.use("/api/user", user);
 app.use("/api/chat", chat);
+app.use("/api/diary", diary);
 
 const PORT: number = +process.env.PORT! || 4000; // <-- if your port # is different, change it
 
