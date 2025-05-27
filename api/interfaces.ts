@@ -6,6 +6,7 @@ export interface IDiary {
 	isPassProtected: boolean;
 	favorite: boolean;
 	monthID: string;
+	date: string;
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -52,6 +53,6 @@ export interface IYearCollection extends BaseCollection {
 }
 
 export interface IMonthCollection extends BaseCollection {
-	yearID: string; // foreign key to YearCollection._id
-	month: number; // 0–11 or 1–12 (your choice, but be consistent)
+	yearID: string; 
+	month: number; 
 }
