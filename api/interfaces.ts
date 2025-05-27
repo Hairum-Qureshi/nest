@@ -3,7 +3,6 @@ export interface IDiary {
 	authorUID: string;
 	content: string;
 	title: string;
-	diaryPassword: number;
 	isPassProtected: boolean;
 	favorite: boolean;
 	monthID: string;
