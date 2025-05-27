@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import IUser from "../interfaces";
+import { IUser } from "../interfaces";
 
 const userSchema = new Schema(
 	{
@@ -30,7 +30,10 @@ const userSchema = new Schema(
 				type: String,
 				ref: "Diary"
 			}
-		]
+		],
+		diaryPin: {
+			type: Number
+		}
 	},
 	{
 		timestamps: true
