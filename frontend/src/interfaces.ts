@@ -7,6 +7,7 @@ export interface Diary {
 	favorite: boolean;
 	monthID: string;
 	date: string;
+	year: number;
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -42,6 +43,6 @@ export interface Message {
 }
 
 export interface CollectionYear {
-    _id: string,
-    year: number
+	_id: string;
+	year: number;
 }
