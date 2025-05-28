@@ -31,6 +31,14 @@ export default function App() {
 					}
 				/>
 				<Route
+					path="/entries/year/:year/view"
+					element={
+						<ProtectedRoutesGuard>
+							<Dashboard />
+						</ProtectedRoutesGuard>
+					}
+				/>
+				<Route
 					path="/chat"
 					element={
 						<ProtectedRoutesGuard>
