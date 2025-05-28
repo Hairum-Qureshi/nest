@@ -7,6 +7,7 @@ export interface IDiary {
 	favorite: boolean;
 	monthID: string;
 	date: string;
+	year: number;
 	createdAt: Date;
 	updatedAt: Date;
 }
