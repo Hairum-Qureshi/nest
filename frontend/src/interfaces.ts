@@ -3,9 +3,10 @@ export interface Diary {
 	authorUID: string;
 	content: string;
 	title: string;
-	diaryPassword: number;
 	isPassProtected: boolean;
 	favorite: boolean;
+	monthID: string;
+	date: string;
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -17,6 +18,7 @@ export interface UserData {
 	password: string;
 	diaries: Diary[];
 	favoriteDiaries: Diary[];
+	diaryPin: number;
 	createdAt: Date;
 	updatedAt: Date;
 }
