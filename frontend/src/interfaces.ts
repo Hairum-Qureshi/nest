@@ -31,10 +31,15 @@ interface DiaryContent {
 	summary: string;
 }
 
-export default interface Message {
+export interface Message {
 	_id: string;
 	userID: string;
 	role: Role;
 	content: string;
 	relatedDiaries: DiaryContent[];
+}
+
+export interface CollectionYear {
+    _id: string,
+    year: number
 }
