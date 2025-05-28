@@ -32,6 +32,9 @@ export const diarySchema = new Schema<IDiary>(
 		},
 		date: {
 			type: String
+		},
+		year: {
+			
 		}
 	},
 	{
