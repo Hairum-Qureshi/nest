@@ -7,6 +7,7 @@ import ProtectedRoutesGuard from "./ProtectedRoutesGuard";
 import AIChat from "./pages/ai-chat/AIChat";
 import useStore from "../hooks/zustand/authStore";
 import { useEffect } from "react";
+import Diary from "./pages/Diary";
 
 export default function App() {
 	const getCurrentUserData = useStore(state => state.getCurrentUserData);
@@ -35,6 +36,14 @@ export default function App() {
 					element={
 						<ProtectedRoutesGuard>
 							<Dashboard />
+						</ProtectedRoutesGuard>
+					}
+				/>
+				<Route
+					path="/view/:year/:month/:day"
+					element={
+						<ProtectedRoutesGuard>
+							<Diary />
 						</ProtectedRoutesGuard>
 					}
 				/>
