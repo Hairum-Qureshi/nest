@@ -19,20 +19,12 @@ const userSchema = new Schema(
 			type: String,
 			required: true
 		},
-		diaryIDs: [
-			{
-				type: String,
-				ref: "Diary"
-			}
-		],
-		favoriteDiaries: [
-			{
-				type: String,
-				ref: "Diary"
-			}
-		],
 		diaryPin: {
 			type: Number
+		},
+		yearCollections: {
+			type: [String],
+			ref: "YearCollection"
 		}
 	},
 	{
