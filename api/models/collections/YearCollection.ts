@@ -12,8 +12,11 @@ export const yearCollectionSchema = new Schema<IYearCollection>(
 		},
 		year: {
 			type: Number,
-			required: true,
-			ref: "Diary"
+			required: true
+		},
+		monthCollections: {
+			type: [String],
+			ref: "MonthCollection"
 		}
 	},
 	{
