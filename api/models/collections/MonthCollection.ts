@@ -18,6 +18,15 @@ export const monthCollectionSchema = new Schema<IMonthCollection>(
 			type: Number,
 			required: true,
 			ref: "Diary"
+		},
+		diaryIDs: [
+			{
+				type: String,
+				ref: "Diary"
+			}
+		],
+		datesWritten: {
+			type: [Number]
 		}
 	},
 	{
