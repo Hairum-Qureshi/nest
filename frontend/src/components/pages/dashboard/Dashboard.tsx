@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Calendar from "./Calendar";
+import { Link } from "react-router-dom";
 
 export default function Landing() {
 	const months = [
@@ -185,25 +186,29 @@ export default function Landing() {
 									});
 
 									return (
-										<div
-											key={index}
-											className="w-full my-3 flex items-center p-3 text-white border border-green-600 hover:border-green-500 rounded-sm bg-green-950"
+										<Link
+											to={`/view/${selectedYear}/${selectedMonth}/${index + 1}`}
 										>
-											{/* Date box */}
-											<div className="flex flex-col items-center justify-center w-16 h-20 rounded-md shadow-sm">
-												<h2 className="font-semibold text-3xl">
-													{index + 1 < 10 ? `0${index + 1}` : index + 1}
-												</h2>
-												<p className="text-sm text-green-400">{weekday}</p>
-											</div>
+											<div
+												key={index}
+												className="w-full my-3 flex items-center p-3 text-white border border-green-600 hover:border-green-500 rounded-sm bg-green-950"
+											>
+												{/* Date box */}
+												<div className="flex flex-col items-center justify-center w-16 h-20 rounded-md shadow-sm">
+													<h2 className="font-semibold text-3xl">
+														{index + 1 < 10 ? `0${index + 1}` : index + 1}
+													</h2>
+													<p className="text-sm text-green-400">{weekday}</p>
+												</div>
 
-											{/* Optional extra content space */}
-											<div className="ml-7 flex-1 text-left">
-												<p className="text-sm text-gray-300">
-													Diary details go here
-												</p>
+												{/* Optional extra content space */}
+												<div className="ml-7 flex-1 text-left">
+													<p className="text-sm text-gray-300">
+														Diary details go here
+													</p>
+												</div>
 											</div>
-										</div>
+										</Link>
 									);
 								})}
 							</div>
