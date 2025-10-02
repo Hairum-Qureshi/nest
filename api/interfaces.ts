@@ -4,22 +4,9 @@ export interface IDiary {
 	content: string;
 	title: string;
 	isPassProtected: boolean;
-	favorite: boolean;
 	monthID: string;
 	date: string;
 	year: number;
-	createdAt: Date;
-	updatedAt: Date;
-}
-
-export interface IUser {
-	_id: string;
-	fullName: string;
-	email: string;
-	password: string;
-	diaryIDs: IDiary[];
-	favoriteDiaries: IDiary[];
-	diaryPin: number;
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -50,10 +37,24 @@ interface BaseCollection {
 }
 
 export interface IYearCollection extends BaseCollection {
-	year: number; 
+	year: number;
+	monthCollections: IMonthCollection[];
 }
 
 export interface IMonthCollection extends BaseCollection {
-	yearID: string; 
-	month: number; 
+	yearID: string;
+	month: number;
+	diaryIDs: string[] | IDiary[];
+	datesWritten: number[];
+}
+
+export interface IUser {
+	_id: string;
+	fullName: string;
+	email: string;
+	password: string;
+	diaryPin: number;
+	yearCollections: IYearCollection[];
+	createdAt: Date;
+	updatedAt: Date;
 }
