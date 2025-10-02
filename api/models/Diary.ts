@@ -14,14 +14,7 @@ export const diarySchema = new Schema<IDiary>(
 			type: String,
 			required: true
 		},
-		title: {
-			type: String
-		},
 		isPassProtected: {
-			type: Boolean,
-			default: false
-		},
-		favorite: {
 			type: Boolean,
 			default: false
 		},
@@ -34,7 +27,7 @@ export const diarySchema = new Schema<IDiary>(
 			type: String
 		},
 		year: {
-			
+			type: Number
 		}
 	},
 	{
