@@ -1,107 +1,240 @@
-import background from "../../../assets/background.png";
-import Diary from "./Diary";
+import { useState } from "react";
+import Calendar from "./Calendar";
 
 export default function Landing() {
+	const months = [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December"
+	];
+
+	const [currentTab, setCurrentTab] = useState("calendar");
+	const [collectionSelected, setCollectionSelected] = useState(false);
+	const [selectedYear, setSelectedYear] = useState<number>();
+	const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
+
+	const numDaysInMonth =
+		selectedMonth && selectedYear
+			? new Date(selectedYear, months.indexOf(selectedMonth) + 1, 0).getDate()
+			: 0;
+
 	return (
-		<div
-			style={{ backgroundImage: `url(${background})` }}
-			className="bg-cover bg-no-repeat w-full min-h-screen relative"
-		>
-			{/* Search Bar */}
-			<div className="w-full p-3 flex">
-				<div className="mt-3 flex w-full gap-2 items-center">
-					<input
-						type="text"
-						placeholder="Search Entries by title or date"
-						className="p-2 text-base text-slate-100 w-full outline-none rounded-md focus:ring  bg-[#0b2630] border border-sky-800 focus:ring-sky-600"
-					/>
-					<div className="text-white">
-						<button className="p-1 py-2 text-base border border-[#057ba5] rounded-md w-30 bg-[#002a3a] text-white hover:cursor-pointer">
-							Create Entry
-						</button>
-					</div>
-				</div>
+		<div className="w-full min-h-screen relative bg-[#09100d] p-10">
+			<h1 className="text-white font-semibold text-2xl mb-5">Hey, Hairum</h1>
+
+			{/* Tabs */}
+			<div className="text-sm font-medium text-center border-b border-gray-200">
+				<ul className="flex flex-wrap -mb-px">
+					<li className="me-2">
+						<p
+							className={`relative inline-block p-4 text-gray-400
+								after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] 
+								after:w-0 after:transition-all after:duration-300 hover:cursor-pointer
+								${
+									currentTab === "calendar"
+										? "text-green-600 after:w-full after:bg-green-600"
+										: "hover:text-slate-400 hover:after:w-full hover:after:bg-slate-300"
+								}`}
+							onClick={() => {
+								setCurrentTab("calendar");
+								setCollectionSelected(false);
+								setSelectedMonth(null);
+							}}
+						>
+							Calendar
+						</p>
+					</li>
+
+					<li className="me-2">
+						<p
+							className={`relative inline-block p-4 text-gray-400
+								after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] 
+								after:w-0 after:transition-all after:duration-300 hover:cursor-pointer
+								${
+									currentTab === "collections"
+										? "text-green-600 after:w-full after:bg-green-600"
+										: "hover:text-slate-400 hover:after:w-full hover:after:bg-slate-300"
+								}`}
+							onClick={() => {
+								setCurrentTab("collections");
+								setSelectedMonth(null);
+							}}
+						>
+							Collections
+						</p>
+					</li>
+				</ul>
 			</div>
 
-			{/* Recent Highlights */}
-			{/* <div className="ml-[16.6667%] w-[calc(100%-16.6667%)] p-4 flex justify-center">
-				<div className="w-full bg-[#122117] border border-amber-500 text-amber-300 rounded-lg p-4 shadow-inner">
-					<p className="text-lg font-semibold">Recent Highlights</p>
-				</div>
-			</div> */}
+			{/* Main Content */}
+			{currentTab === "calendar" ? (
+				<Calendar />
+			) : (
+				<div className="mt-6 text-white">
+					{/* Breadcrumb */}
+					{collectionSelected && selectedYear && (
+						<div className="flex" aria-label="Breadcrumb">
+							<ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+								<li className="inline-flex items-center">
+									<p
+										className="inline-flex items-center text-sm font-medium text-white hover:text-green-400 hover:cursor-pointer"
+										onClick={() => setCollectionSelected(false)}
+									>
+										Collections
+									</p>
+								</li>
+								<li>
+									<div className="flex items-center">
+										<svg
+											className="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1"
+											aria-hidden="true"
+											xmlns="http://www.w3.org/2000/svg"
+											fill="none"
+											viewBox="0 0 6 10"
+										>
+											<path
+												stroke="currentColor"
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												strokeWidth="2"
+												d="m1 9 4-4-4-4"
+											/>
+										</svg>
+										<p
+											className="ms-1 text-sm font-medium text-gray-700 hover:text-green-400 md:ms-2 dark:text-gray-400 dark:hover:text-white hover:cursor-pointer"
+											onClick={() => setCollectionSelected(false)}
+										>
+											{selectedYear}
+										</p>
+									</div>
+								</li>
+								{selectedMonth && (
+									<li aria-current="page">
+										<div className="flex items-center">
+											<svg
+												className="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1"
+												aria-hidden="true"
+												xmlns="http://www.w3.org/2000/svg"
+												fill="none"
+												viewBox="0 0 6 10"
+											>
+												<path
+													stroke="currentColor"
+													strokeLinecap="round"
+													strokeLinejoin="round"
+													strokeWidth="2"
+													d="m1 9 4-4-4-4"
+												/>
+											</svg>
+											<span
+												className="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400 hover:text-green-400 hover:cursor-pointer"
+												onClick={() => setSelectedMonth(null)}
+											>
+												{selectedMonth}
+											</span>
+										</div>
+									</li>
+								)}
+							</ol>
+						</div>
+					)}
 
-			{/* All Entries Section */}
-			<div className="w-full min-h-screen h-auto p-4 flex justify-center">
-				<div className="w-11/12 bg-[#0b1e24] border border-sky-700 text-sky-200 rounded-xl p-6 shadow-lg space-y-4">
-					<h2 className="text-2xl font-bold">All Entries</h2>
+					{/* Months */}
+					{selectedYear &&
+						collectionSelected &&
+						!selectedMonth &&
+						months.map((month, index) => (
+							<div key={index}>
+								<div
+									className="my-5 w-full p-2 rounded-md bg-green-800 border border-green-400 shadow-[0_0_15px_rgba(34,197,94,0.7)] hover:cursor-pointer"
+									onClick={() => {
+										setSelectedMonth(month);
+										setSelectedYear(selectedYear);
+									}}
+								>
+									{month}
+								</div>
+							</div>
+						))}
+					{/* Days */}
+					{collectionSelected && selectedMonth && selectedYear && (
+						<div>
+							<input
+								type="text"
+								className="w-full p-3 mt-5 text-base text-white border border-green-400 rounded-md outline-none"
+								placeholder="Search diary entries..."
+							/>
+							<div className="my-5 ms-auto flex flex-col">
+								{Array.from({ length: numDaysInMonth }).map((_, index) => {
+									const date = new Date(
+										selectedYear,
+										months.indexOf(selectedMonth) + 1,
+										index + 1
+									);
+									const weekday = date.toLocaleDateString("en-US", {
+										weekday: "long"
+									});
 
-					{/* Example Entry */}
-					<Diary />
-					<Diary />
-					{/* Empty state message if no entries */}
-					{/* <p className="text-slate-400 italic">No entries yet — start journaling!</p> */}
+									return (
+										<div
+											key={index}
+											className="w-full my-3 flex items-center p-3 text-white border border-green-600 hover:border-green-500 rounded-sm bg-green-950"
+										>
+											{/* Date box */}
+											<div className="flex flex-col items-center justify-center w-16 h-20 rounded-md shadow-sm">
+												<h2 className="font-semibold text-3xl">
+													{index + 1 < 10 ? `0${index + 1}` : index + 1}
+												</h2>
+												<p className="text-sm text-green-400">{weekday}</p>
+											</div>
+
+											{/* Optional extra content space */}
+											<div className="ml-7 flex-1 text-left">
+												<p className="text-sm text-gray-300">
+													Diary details go here
+												</p>
+											</div>
+										</div>
+									);
+								})}
+							</div>
+						</div>
+					)}
+
+					{/* Year List */}
+					{!collectionSelected && (
+						<>
+							<div
+								className="my-5 w-full p-2 rounded-md bg-green-800 border border-green-400 shadow-[0_0_15px_rgba(34,197,94,0.7)] hover:cursor-pointer"
+								onClick={() => {
+									setCollectionSelected(true);
+									setSelectedYear(2024);
+								}}
+							>
+								Year 2024
+							</div>
+							<div
+								className="my-5 w-full p-2 rounded-md bg-green-800 border border-green-400 shadow-[0_0_15px_rgba(34,197,94,0.7)] hover:cursor-pointer"
+								onClick={() => {
+									setCollectionSelected(true);
+									setSelectedYear(2025);
+								}}
+							>
+								Year 2025
+							</div>
+						</>
+					)}
 				</div>
-			</div>
+			)}
 		</div>
 	);
 }
-
-// import { useState } from "react";
-// import background from "../../assets/background.png";
-// // TODO - add a "how are you feeling today?" (mood-wise) section on the sidebar where the user can select an emoji of how they're feeling today
-// // TODO - add magnifying glass icon to the search bar
-// // TODO - allow users to favorite entries and on the left side add a favorites section
-// // TODO - maybe have a number displaying how many entries the user has posted on the nav section too?
-
-// export default function Landing() {
-// 	const [show, setShow] = useState(true);
-
-// 	return (
-// 		<div
-// 			style={{ backgroundImage: `url(${background})` }}
-// 			className="bg-cover bg-no-repeat w-full min-h-screen relative"
-// 		>
-// 			{/* Sidebar */}
-// 			<div className="w-1/6 bg-[#0c1b14] p-2 absolute left-0 min-h-screen h-full shadow-md shadow-emerald-900 text-white flex justify-center">
-// 				<h1 className="text-3xl">Nest</h1>
-// 			</div>
-// {/* Search Bar */}
-// <div className="ml-[16.6667%] w-[calc(100%-16.6667%)] p-3 flex">
-// 	<div className="mt-3 flex w-full gap-2 items-center">
-// 		<input
-// 			type="text"
-// 			placeholder="Search Entries by title or date"
-// 			className="p-2 text-base text-slate-100 w-full outline-none rounded-md focus:ring  bg-[#091e13] border border-green-800 focus:ring-green-600"
-// 		/>
-// 		<div className="text-white">
-// 			<button className="p-1 py-2 text-base border border-[#057ba5] rounded-md w-30 bg-[#002a3a] text-white hover:cursor-pointer">
-// 				Create Entry
-// 			</button>
-// 		</div>
-// 	</div>
-// </div>
-
-// 			{/* Recent Highlights Section */}
-// 			{show && (
-// 				<div
-// 					className="ml-[16.6667%] w-[calc(100%-16.6667%)] p-2 flex justify-center"
-// 					onClick={() => setShow(!show)}
-// 				>
-// 					<div className="w-full bg-[#061b11] text-green-500 border border-green-700 rounded-lg p-4 mx-10 mt-5 shadow-inner shadow-[#0c1b14] h-40">
-// 						<p className="text-lg font-semibold">Recent Highlights</p>
-// 					</div>
-// 				</div>
-// 			)}
-// 			{/* Main Entries Section */}
-// 			<div className="ml-[16.6667%] w-[calc(100%-16.6667%)] p-2 min-h-screen h-auto flex justify-center">
-// 				<div className="w-11/12 bg-[#05202a] text-sky-300 border-2 border-sky-700 mx-10 min-h-screen h-full rounded-tl-2xl mt-5 rounded-tr-2xl p-6 shadow-lg shadow-black/30">
-// 					<h2 className="text-2xl font-bold mb-4">All Entries</h2>
-// 					{/* <p className="text-slate-400">Your entries will appear here...</p> */}
-// 					<div className="border-2 border-sky-700 bg-cyan-950 rounded-md p-2 w-full">
-// 						4/13/2025
-// 					</div>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	);
-// }
