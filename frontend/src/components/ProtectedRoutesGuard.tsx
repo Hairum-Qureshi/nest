@@ -14,12 +14,13 @@ export default function ProtectedRoutesGuard({
 		location.pathname.includes("/year");
 	const isAIChat = location.pathname.includes("/chat");
 	const isDiary = location.pathname.includes("/view");
+	const isSubscriptionPage = location.pathname.includes("/subscription-plans");
 
 	if (!isAuthenticated) {
 		return <Navigate to="/sign-in" state={{ from: location }} replace />;
 	}
 
-	if (isDashboard || isAIChat || isDiary) {
+	if (isDashboard || isAIChat || isDiary || isSubscriptionPage) {
 		return (
 			<div className="flex w-full h-screen">
 				<SideBar />
@@ -28,6 +29,5 @@ export default function ProtectedRoutesGuard({
 		);
 	}
 
-	// For non-dashboard pages (but still protected)
 	return <>{children}</>;
 }
