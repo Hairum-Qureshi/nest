@@ -48,6 +48,12 @@ export interface IMonthCollection extends BaseCollection {
 	datesWritten: number[];
 }
 
+enum SubscriptionTiers {
+	FREE = "FREE",
+	PRO = "PRO",
+	PREMIUM = "PREMIUM"
+}
+
 export interface IUser {
 	_id: string;
 	fullName: string;
@@ -55,6 +61,8 @@ export interface IUser {
 	password: string;
 	diaryPin: number;
 	yearCollections: IYearCollection[];
+	subscriptionTier: SubscriptionTiers;
+	subscriptionExpiry: Date;
 	createdAt: Date;
 	updatedAt: Date;
 }
