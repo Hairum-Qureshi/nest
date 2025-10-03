@@ -54,6 +54,11 @@ enum SubscriptionTiers {
 	PREMIUM = "PREMIUM"
 }
 
+enum SubscriptionTypes {
+	MONTHLY = "MONTHLY",
+	YEARLY = "YEARLY"
+}
+
 export interface IUser {
 	_id: string;
 	fullName: string;
@@ -62,6 +67,7 @@ export interface IUser {
 	diaryPin: number;
 	yearCollections: IYearCollection[];
 	subscriptionTier: SubscriptionTiers;
+	subscriptionType: SubscriptionTypes;
 	subscriptionExpiry: Date;
 	createdAt: Date;
 	updatedAt: Date;
