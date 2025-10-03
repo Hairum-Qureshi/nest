@@ -30,6 +30,9 @@ const userSchema = new Schema(
 			type: String,
 			default: "FREE"
 		},
+		subscriptionType: {
+			type: String
+		},
 		subscriptionExpiry: {
 			type: Date
 		}
