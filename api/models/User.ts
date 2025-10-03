@@ -25,6 +25,13 @@ const userSchema = new Schema(
 		yearCollections: {
 			type: [String],
 			ref: "YearCollection"
+		},
+		subscriptionTier: {
+			type: String,
+			default: "FREE"
+		},
+		subscriptionExpiry: {
+			type: Date
 		}
 	},
 	{
